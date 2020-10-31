@@ -6,4 +6,7 @@ My dotfiles for :
 * kitty
 * compton
 
+# My Ubuntu RICE.
+![alt text](rice.png)
+
 feel free to use.
