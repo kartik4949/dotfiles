@@ -1,9 +1,11 @@
 source $HOME/.config/nvim/plug-config/coc.vim
-
 call plug#begin('~/.local/share/nvim/plugged')
+
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'vim-airline/vim-airline'
+
+Plug 'joshdick/onedark.vim'
 
 Plug 'vim-airline/vim-airline-themes'
 
@@ -17,10 +19,6 @@ Plug 'scrooloose/nerdtree'
 
 Plug 'kien/ctrlp.vim'
 
-Plug 'morhetz/gruvbox'
-
-Plug 'dracula/vim', { 'as': 'dracula' }
-
 Plug 'drewtempelmeyer/palenight.vim'
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -31,8 +29,11 @@ Plug 'psf/black', { 'tag': '19.10b0' }
 
 Plug 'heavenshell/vim-pydocstring', { 'do': 'make install' }
 
+Plug 'vim-python/python-syntax'
+
 Plug 'wsdjeg/FlyGrep.vim'
 call plug#end()
+
 
 "Doc String
 let g:pydocstring_formatter = 'google'
@@ -50,15 +51,7 @@ let g:ctrlp_cmd = 'CtrlP'
 nnoremap <Space>s/ :FlyGrep<cr>
 
 
-let g:airline_theme='kalisi'
-
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
-
-set number
-colorscheme darkblue 
-set background=dark
-let g:lightline = { 'colorscheme': 'palenight' }
-let g:airline_theme = "palenight"
 
 if (has("nvim"))
   "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
@@ -72,6 +65,12 @@ if (has("termguicolors"))
   set termguicolors
 endif
 
+syntax on
+let g:airline_theme='onedark'
+let g:lightline = {
+  \ 'colorscheme': 'onedark',
+  \ }
+colorscheme onedark
 " Italics for my favorite color scheme
 let g:palenight_terminal_italics=1
 
@@ -92,8 +91,6 @@ nnoremap <silent> <leader>hs :hsplit<CR>
 
 let g:python_highlight_all = 1
 
-
-colorscheme gruvbox
 
 " FZF
 " This is the default extra key bindings
@@ -169,7 +166,6 @@ command! -bang -nargs=* GGrep
 
 "black
 nnoremap <F9> :Black<CR>
-autocmd BufWritePost *.py silent! execute ':Black'
 
 
 nnoremap <leader>t :terminal<CR>
@@ -179,3 +175,6 @@ set mouse=a
 
 "Relative  numbers
 set rnu
+
+"set copy to system clipboard default
+set clipboard+=unnamedplus
